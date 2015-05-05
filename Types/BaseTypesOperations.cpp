@@ -1,6 +1,7 @@
 #include "BaseTypes.h"
-#define _USE_MATH_DEFINES
 #include "BaseTypesMACRO.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
 using namespace MCSAS;
 using namespace Types;
 using namespace BaseTypes;

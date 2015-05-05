@@ -1,7 +1,19 @@
 #include "MGTask.h"
+#include "../Types/BaseTypes.h"
 using namespace std;
 
-MCSAS::MatrixGenerator::MGTask<double> GetStandardTask( size_t Number = 1 )
+
+template struct MCSAS::MatrixGenerator::MGTask<float>;
+template struct MCSAS::MatrixGenerator::MGTask<double>;
+template struct MCSAS::MatrixGenerator::MGTask<MCSAS::Types::BaseTypes::ComplexDoubleCartesian>;
+template struct MCSAS::MatrixGenerator::MGTask<MCSAS::Types::BaseTypes::ComplexDoubleHybrid>;
+template struct MCSAS::MatrixGenerator::MGTask<MCSAS::Types::BaseTypes::ComplexDoublePolar>;
+template struct MCSAS::MatrixGenerator::MGTask<MCSAS::Types::BaseTypes::ComplexFloatCartesian>;
+template struct MCSAS::MatrixGenerator::MGTask<MCSAS::Types::BaseTypes::ComplexFloatHybrid>;
+template struct MCSAS::MatrixGenerator::MGTask<MCSAS::Types::BaseTypes::ComplexFloatPolar>;
+
+template<>
+MCSAS::MatrixGenerator::MGTask<double> MCSAS::MatrixGenerator::GetStandardTask( size_t Number )
 {
 	MCSAS::MatrixGenerator::MGTask<double> Def;
 	if (Number == 0)
