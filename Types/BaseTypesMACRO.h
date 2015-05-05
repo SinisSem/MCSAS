@@ -32,3 +32,48 @@
 #define P_prod_P(PDestR, PDestA, P1R, P1A, P2R, P2A)\
 	PDestR = P1R * P2R;\
 	PDestA = P1A + P2A
+
+// +
+#define C_plus_C(Dest_Re, Dest_Im, Op1_Re, Op1_Im, Op2_Re, Op2_Im)\
+	Dest_Re = Op1_Re + Op2_Re;\
+	Dest_Im = Op1_Im + Op2_Im
+
+// Да - хрень, но не охота - пиши руками (лучше не придумал, блин)
+#define P_plus_P(Dest_R, Dest_A, Op1_R, Op1_A, Op2_R, Op2_A)\
+	Dest_R = sqrt((Op1_R*sin(Op1_A) + Op2_R*sin(Op2_A)) * (Op1_R*sin(Op1_A) + Op2_R*sin(Op2_A))\
+	+ (Op1_R*cos(Op1_A) + Op2_R*cos(Op2_A)) * (Op1_R*cos(Op1_A) + Op2_R*cos(Op2_A)));\
+	Dest_A = atan2((Op1_R*sin(Op1_A) + Op2_R*sin(Op2_A)), (Op1_R*cos(Op1_A) + Op2_R*cos(Op2_A)))
+
+#define H_plus_H(Dest_R, Dest_S, Dest_C, Op1_R, Op1_S, Op1_C, Op2_R, Op2_S, Op2_C)\
+	Dest_R = sqrt((Op1_R*Op1_S + Op2_R*Op2_S) * (Op1_R*Op1_S + Op2_R*Op2_S)\
+	+ (Op1_R*Op1_C + Op2_R*Op2_C) * (Op1_R*Op1_C + Op2_R*Op2_C));\
+	Dest_S = (Op1_R*Op1_S + Op2_R*Op2_S) / Dest_R;\
+	Dest_C = (Op1_R*Op1_C + Op2_R*Op2_C) / Dest_R
+
+// *
+#define C_prod_C(Dest_Re, Dest_Im, Op1_Re, Op1_Im, Op2_Re, Op2_Im)\
+	Dest_Re = Op1_Re * Op2_Re - Op1_Im * Op2_Im;\
+	Dest_Im = Op1_Im * Op2_Re + Op1_Re * Op2_Im
+
+#define P_prod_P(PDestR, PDestA, P1R, P1A, P2R, P2A)\
+	PDestR = P1R * P2R;\
+	PDestA = P1A + P2A
+
+#define H_prod_H(Dest_R, Dest_S, Dest_C, Op1_R, Op1_S, Op1_C, Op2_R, Op2_S, Op2_C)\
+	Dest_R = Op1_R * Op2_R;\
+	Dest_S = Op1_C * Op2_S + Op1_S * Op2_C;\
+	Dest_C = Op1_C * Op2_C - Op1_S * Op2_S
+
+// /
+#define C_div_C(Dest_Re, Dest_Im, Op1_Re, Op1_Im, Op2_Re, Op2_Im)\
+	Dest_Re = (Op1_Re * Op2_Re + Op1_Im * Op2_Im)/(Op2_Re * Op2_Re + Op2_Im * Op2_Im);\
+	Dest_Im = (Op1_Im * Op2_Re - Op1_Re * Op2_Im)/(Op2_Re * Op2_Re + Op2_Im * Op2_Im)
+
+#define P_div_P(PDestR, PDestA, P1R, P1A, P2R, P2A)\
+	PDestR = P1R / P2R;\
+	PDestA = P1A - P2A
+
+#define H_div_H(Dest_R, Dest_S, Dest_C, Op1_R, Op1_S, Op1_C, Op2_R, Op2_S, Op2_C)\
+	Dest_R = Op1_R * Op2_R;\
+	Dest_S = Op1_C * Op2_S - Op1_S * Op2_C;\
+	Dest_C = Op1_C * Op2_C + Op1_S * Op2_S

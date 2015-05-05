@@ -3,12 +3,24 @@
 #include "device_launch_parameters.h"
 
 #include <stdio.h>
-#include "../Types/BaseTypesRandom.h"
+#include "../Types/BaseTypes.h"
+
+using namespace MCSAS;
+using namespace Types;
+using namespace BaseTypes;
 
 int main()
 {
-	MCSAS::Types::BaseTypes::StartRandom();
-	for(int i = 0; i < 100; i++)
-		float a = MCSAS::Types::BaseTypes::RandomBaseDispersion((float)10, (float)5);
+	double A = Add(1,2);
+	ComplexDoubleCartesian o1;
+	o1.Re = 1;
+	o1.Im = 2;
+	ComplexDoubleCartesian o2;
+	o2.Re = 3;
+	o2.Im = 5;
+	ComplexDoubleCartesian a = Add(o1,o2);
+	a = Mul(o1,o2);
+
+
     return 0;
 }
