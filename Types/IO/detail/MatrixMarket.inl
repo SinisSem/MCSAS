@@ -97,7 +97,7 @@ namespace MCSAS
 
 
 			template<typename Type>
-			void ReadMMFile( COO_matrix<Type> Matr, std::string filename )
+			void ReadMMFile( COO_matrix<Type> &Matr, std::string filename )
 			{
 				std::ifstream input(filename.c_str());
 
@@ -161,7 +161,7 @@ namespace MCSAS
 						input >> row;
 						input >> col;
 						input >> real;
-						BaseTypes::detail::SetValue(val, real, 0);
+						BaseTypes::SetValue(val, real, 0);
 						Matr.Rows.push_back(row);
 						Matr.Cols.push_back(col);
 						Matr.Vals.push_back(val);
@@ -181,7 +181,7 @@ namespace MCSAS
 						input >> col;
 						input >> real;
 						input >> imag;
-						BaseTypes::detail::SetValue(val, real, imag);
+						BaseTypes::SetValue(val, real, imag);
 						Matr.Rows.push_back(row);
 						Matr.Cols.push_back(col);
 						Matr.Vals.push_back(val);
@@ -244,7 +244,7 @@ namespace MCSAS
 
 
 			template<typename Type>
-			void ReadMMFile( std::vector<Type> Vector, std::string filename )
+			void ReadMMFile( std::vector<Type> &Vector, std::string filename )
 			{
 				std::ifstream input(filename.c_str());
 
@@ -300,7 +300,7 @@ namespace MCSAS
 						input >> real;
 
 						Type Val;
-						BaseTypes::detail::SetValue(Val, real, 0);
+						BaseTypes::SetValue(Val, real, 0);
 						Vector.push_back(Val);
 
 						num_entries_read++;
@@ -316,7 +316,7 @@ namespace MCSAS
 						input >> imag;
 
 						Type Val;
-						BaseTypes::detail::SetValue(Val, real, imag);
+						BaseTypes::SetValue(Val, real, imag);
 						Vector.push_back(Val);
 
 						num_entries_read++;

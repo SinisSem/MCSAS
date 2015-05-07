@@ -6,6 +6,77 @@ using namespace MCSAS;
 using namespace Types;
 using namespace BaseTypes;
 
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(MCSAS::Types::BaseTypes::ComplexDoubleCartesian &Var, double Re, double Im)
+{
+	Var.Re = Re;
+	Var.Im = Im;
+}
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(MCSAS::Types::BaseTypes::ComplexDoubleHybrid &Var, double Re, double Im)
+{
+	double angle = atan2(Im, Re);
+	Var.AngleCos = cos(angle);
+	Var.AngleSin = sin(angle);
+	Var.Distance = sqrt(Re*Re + Im*Im);
+}
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(MCSAS::Types::BaseTypes::ComplexDoublePolar &Var, double Re, double Im)
+{
+	Var.Angle = atan2(Im, Re);
+	Var.Distance = sqrt(Re*Re + Im*Im);
+}
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(MCSAS::Types::BaseTypes::ComplexFloatCartesian &Var, double Re, double Im)
+{
+	Var.Re = Re;
+	Var.Im = Im;
+}
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(MCSAS::Types::BaseTypes::ComplexFloatHybrid &Var, double Re, double Im)
+{
+	double angle = atan2(Im, Re);
+	Var.AngleCos = cos(angle);
+	Var.AngleSin = sin(angle);
+	Var.Distance = sqrt(Re*Re + Im*Im);
+}
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(MCSAS::Types::BaseTypes::ComplexFloatPolar &Var, double Re, double Im)
+{
+	Var.Angle = atan2(Im, Re);
+	Var.Distance = sqrt(Re*Re + Im*Im);
+}
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(float& Var, double Re, double Im)
+{
+	Var = Re;
+}
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(double& Var, double Re, double Im)
+{
+	Var = Re;
+}
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(size_t &Var, double Re, double Im)
+{
+	Var = Re;
+}
+
+template<>
+void MCSAS::Types::BaseTypes::SetValue(int &Var, double Re, double Im)
+{
+	Var = Re;
+}
+
 double MCSAS::Types::BaseTypes::Add(double Op1, double Op2)
 {
 	return Op1 + Op2;

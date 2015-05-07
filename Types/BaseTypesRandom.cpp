@@ -46,6 +46,7 @@ namespace MCSAS
 			{
 				ComplexDoubleCartesian Ret;
 				Ret.Re = RandomBaseDispersion(Base.Re, Dispersion.Re);
+				Ret.Im = RandomBaseDispersion(Base.Im, Dispersion.Im);
 				return Ret;
 			}
 
@@ -76,6 +77,47 @@ namespace MCSAS
 				ComplexDoubleCartesian Ret_ = RandomBaseDispersion(Base_, Dispersion_);
 
 				ComplexDoublePolar Ret;
+				C2P(Ret_.Re, Ret_.Im, Ret.Distance, Ret.Angle);
+
+				return Ret;
+			}
+
+			template<>
+			ComplexFloatCartesian RandomBaseDispersion(ComplexFloatCartesian Base, ComplexFloatCartesian Dispersion)
+			{
+				ComplexFloatCartesian Ret;
+				Ret.Re = RandomBaseDispersion(Base.Re, Dispersion.Re);
+				Ret.Im = RandomBaseDispersion(Base.Im, Dispersion.Im);
+				return Ret;
+			}
+
+			template<>
+			ComplexFloatHybrid RandomBaseDispersion(ComplexFloatHybrid Base, ComplexFloatHybrid Dispersion)
+			{
+				ComplexFloatCartesian Base_;
+				H2C(Base.Distance, Base.AngleSin, Base.AngleCos, Base_.Re, Base_.Im);
+				ComplexFloatCartesian Dispersion_;
+				H2C(Dispersion.Distance, Dispersion.AngleSin, Dispersion.AngleCos, Dispersion_.Re, Dispersion_.Im);
+
+				ComplexFloatCartesian Ret_ = RandomBaseDispersion(Base_, Dispersion_);
+
+				ComplexFloatHybrid Ret;
+				C2H(Ret_.Re, Ret_.Im, Ret.Distance, Ret.AngleSin, Ret.AngleCos);
+
+				return Ret;
+			}
+
+			template<>
+			ComplexFloatPolar RandomBaseDispersion(ComplexFloatPolar Base, ComplexFloatPolar Dispersion)
+			{
+				ComplexFloatCartesian Base_;
+				P2C(Base.Distance, Base.Angle, Base_.Re, Base_.Im);
+				ComplexFloatCartesian Dispersion_;
+				P2C(Dispersion.Distance, Dispersion.Angle, Dispersion_.Re, Dispersion_.Im);
+
+				ComplexFloatCartesian Ret_ = RandomBaseDispersion(Base_, Dispersion_);
+
+				ComplexFloatPolar Ret;
 				C2P(Ret_.Re, Ret_.Im, Ret.Distance, Ret.Angle);
 
 				return Ret;

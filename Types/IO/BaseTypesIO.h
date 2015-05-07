@@ -14,22 +14,10 @@ namespace MCSAS
 			//---------------------------------------------------------------------------------------------------------------------------
 
 			template<typename Type>
-			std::string GetTypeString(Type Var)
-			{
-				return "not considered type";
-			}
+			std::string GetTypeString(Type Var);
 
 			template<typename Type>
-			std::string GetValue(Type Var)
-			{
-				return "not considered type";
-			}
-
-			template<typename Type>
-			void SetValue(Type &Var, double Re, double Im)
-			{
-				return;
-			}
+			std::string GetValue(Type Var);
 
 			//---------------------------------------------------------------------------------------------------------------------------
 
@@ -46,13 +34,6 @@ namespace MCSAS
 				Ret += " ";
 				Ret += std::to_string((long double)Var.Im);
 				return Ret;
-			}
-
-			template<>
-			void SetValue(MCSAS::Types::BaseTypes::ComplexDoubleCartesian &Var, double Re, double Im)
-			{
-				Var.Re = Re;
-				Var.Im = Im;
 			}
 
 			//---------------------------------------------------------------------------------------------------------------------------
@@ -72,15 +53,6 @@ namespace MCSAS
 				return Ret;
 			}
 
-			template<>
-			void SetValue(MCSAS::Types::BaseTypes::ComplexDoubleHybrid &Var, double Re, double Im)
-			{
-				double angle = atan2(Im, Re);
-				Var.AngleCos = cos(angle);
-				Var.AngleSin = sin(angle);
-				Var.Distance = sqrt(Re*Re + Im*Im);
-			}
-
 			//---------------------------------------------------------------------------------------------------------------------------
 
 			template<>
@@ -96,13 +68,6 @@ namespace MCSAS
 				Ret += " ";
 				Ret += std::to_string((long double)(sin(Var.Angle) * Var.Distance));
 				return Ret;
-			}
-
-			template<>
-			void SetValue(MCSAS::Types::BaseTypes::ComplexDoublePolar &Var, double Re, double Im)
-			{
-				Var.Angle = atan2(Im, Re);
-				Var.Distance = sqrt(Re*Re + Im*Im);
 			}
 
 			//---------------------------------------------------------------------------------------------------------------------------
@@ -122,13 +87,6 @@ namespace MCSAS
 				return Ret;
 			}
 
-			template<>
-			void SetValue(MCSAS::Types::BaseTypes::ComplexFloatCartesian &Var, double Re, double Im)
-			{
-				Var.Re = Re;
-				Var.Im = Im;
-			}
-
 			//---------------------------------------------------------------------------------------------------------------------------
 
 			template<>
@@ -144,15 +102,6 @@ namespace MCSAS
 				Ret += " ";
 				Ret += std::to_string((long double)(Var.AngleSin * Var.Distance));
 				return Ret;
-			}
-
-			template<>
-			void SetValue(MCSAS::Types::BaseTypes::ComplexFloatHybrid &Var, double Re, double Im)
-			{
-				double angle = atan2(Im, Re);
-				Var.AngleCos = cos(angle);
-				Var.AngleSin = sin(angle);
-				Var.Distance = sqrt(Re*Re + Im*Im);
 			}
 
 			//---------------------------------------------------------------------------------------------------------------------------
@@ -172,13 +121,6 @@ namespace MCSAS
 				return Ret;
 			}
 
-			template<>
-			void SetValue(MCSAS::Types::BaseTypes::ComplexFloatPolar &Var, double Re, double Im)
-			{
-				Var.Angle = atan2(Im, Re);
-				Var.Distance = sqrt(Re*Re + Im*Im);
-			}
-
 			//---------------------------------------------------------------------------------------------------------------------------
 
 			template<>
@@ -192,12 +134,6 @@ namespace MCSAS
 			{
 				std::string Ret = std::to_string((long double)Var);
 				return Ret;
-			}
-
-			template<>
-			void SetValue(float& Var, double Re, double Im)
-			{
-				Var = Re;
 			}
 
 			//---------------------------------------------------------------------------------------------------------------------------
@@ -215,12 +151,6 @@ namespace MCSAS
 				return Ret;
 			}
 
-			template<>
-			void SetValue(double& Var, double Re, double Im)
-			{
-				Var = Re;
-			}
-
 			//---------------------------------------------------------------------------------------------------------------------------
 
 			template<>
@@ -236,12 +166,6 @@ namespace MCSAS
 				return Ret;
 			}
 
-			template<>
-			void SetValue(size_t &Var, double Re, double Im)
-			{
-				Var = Re;
-			}
-
 			//---------------------------------------------------------------------------------------------------------------------------
 
 			template<>
@@ -255,12 +179,6 @@ namespace MCSAS
 			{
 				std::string Ret = std::to_string((long double)Var);
 				return Ret;
-			}
-
-			template<>
-			void SetValue(int &Var, double Re, double Im)
-			{
-				Var = Re;
 			}
 			}
 		}

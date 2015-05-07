@@ -19,10 +19,10 @@ namespace MCSAS
 			void WriteMMFile(std::vector<Type> Vector, std::string filename);	// Запись вектора в файл
 
 			template<typename Type>
-			void ReadMMFile(COO_matrix<Type> Matr, std::string filename);		// Считывание матрицы из файла
+			void ReadMMFile(COO_matrix<Type> &Matr, std::string filename);		// Считывание матрицы из файла
 
 			template<typename Type>
-			void ReadMMFile(std::vector<Type> Vector, std::string filename);	// Считывание вектора из файла
+			void ReadMMFile(std::vector<Type> &Vector, std::string filename);	// Считывание вектора из файла
 		}
 }
 }

@@ -57,6 +57,11 @@ struct ComplexDoubleHybrid
 	double AngleSin;
 };
 
+// Commons
+
+template<typename Type>
+void SetValue(Type &Var, double Re, double Im);
+
 // Operations
 
 int Add(int Op1, int Op2);
