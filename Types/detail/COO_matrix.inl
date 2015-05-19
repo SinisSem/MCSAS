@@ -11,8 +11,10 @@ namespace MCSAS
 	namespace Types
 	{
 		template<typename Type>
-		size_t	COO_matrix<Type>::GetRows()
+		size_t	COO_matrix<Type>::GetRows() const
 		{
+			if (Rows.size() == 0)
+				return 0;
 			size_t first = *std::min_element(Rows.cbegin(), Rows.cend());
 			size_t last = *std::max_element(Rows.cbegin(), Rows.cend());
 
@@ -20,8 +22,10 @@ namespace MCSAS
 		}
 
 		template<typename Type>
-		size_t	COO_matrix<Type>::GetCols()
+		size_t	COO_matrix<Type>::GetCols() const
 		{
+			if (Cols.size() == 0)
+				return 0;
 			size_t first = *std::min_element(Cols.cbegin(), Cols.cend());
 			size_t last = *std::max_element(Cols.cbegin(), Cols.cend());
 			return (last - first + 1);

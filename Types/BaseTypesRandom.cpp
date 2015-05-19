@@ -18,8 +18,9 @@ namespace MCSAS
 			template<>
 			double RandomBaseDispersion(double Base, double Dispersion)
 			{
+				double disp = Base * Dispersion;
 				double x = ((double)rand() / (double)(RAND_MAX)) - 0.5;			// Случайное число [-0.5,0.5]
-				return (Base + (Dispersion + Dispersion) * x);
+				return (Base + (disp + disp) * x);
 			}
 
 			template<>

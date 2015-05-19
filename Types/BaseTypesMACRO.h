@@ -29,9 +29,7 @@
 	H_cos = cos(P_A)
 
 // Operations
-#define P_prod_P(PDestR, PDestA, P1R, P1A, P2R, P2A)\
-	PDestR = P1R * P2R;\
-	PDestA = P1A + P2A
+// TODO: добавить операцию сопряжения
 
 // +
 #define C_plus_C(Dest_Re, Dest_Im, Op1_Re, Op1_Im, Op2_Re, Op2_Im)\

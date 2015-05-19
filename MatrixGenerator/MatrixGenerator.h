@@ -2,6 +2,7 @@
 #include "MGTask.h"
 #include "../Types/COO_matrix.h"
 #include <vector>
+#include "InternalTypes.h"
 
 namespace MCSAS
 {
@@ -13,25 +14,7 @@ namespace MatrixGenerator
 	{
 		/*Внутреннее представление данных-----------------------------------------------------------------*/
 	private:
-		/*Структура, в которой хранится связь - храним только ее ряд, столбец, значение*/
-		struct Link
-		{
-			size_t		RowNumber;
-			size_t		ColNumber;
-			Type		Value;
-		};
-		/*Структура, в которой хранятся цепочки со связями*/
-		struct Chain
-		{
-			size_t					StartNode;						// Индекс первого узла в полной матрице цепей
-			size_t					NodesNumber;					// Количество узлов в цепи
-			std::vector<Link>		Links;							// Вектор нецепочечных связей
-			std::vector<Type>		RightVector;					// Правый вектор
-			std::vector<Type>		a;								// Нижняя диагональ цепочки
-			std::vector<Type>		b;								// Главная диагональ цепочки
-			std::vector<Type>		c;								// Верхняя диагональ цепочки
-		};
-		/*------------------------------------------------------------------------------------------------*/
+
 
 	public:
 		CMatrixGenerator();
@@ -41,16 +24,16 @@ namespace MatrixGenerator
 	private:
 		MGTask<Type>				m_Task;						/*Конфигурация генерируемой сети*/
 		bool						m_HasTask;					/*Было ли задано задание*/
-		std::vector<Chain>			m_Chains;					/*Вектор цепочек - !!!!!!! тут реально и живет внутреннее представление сети*/
+		std::vector<Chain<Type>>	m_Chains;					/*Вектор цепочек - !!!!!!! тут реально и живет внутреннее представление сети*/
 	public:
-		void						SetTask(MGTask<Type>);		/*Задает задание*/
 		MGTask<Type>				GetTask();					/*Возвращает текущее задание*/
 		/*------------------------------------------------------------------------------------------------*/
 
 		/*Генерация внутренних структур-------------------------------------------------------------------*/
 	public:
-		void						GenerateInternal();
+		void						GenerateInternal(MGTask<Type>);
 	private:
+		void						SetTask(MGTask<Type>);		/*Задает задание*/
 		void						CreateChains();
 		void						CreateRandomLinks();
 		void						CreateEDS();

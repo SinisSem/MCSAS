@@ -52,13 +52,12 @@ void CMatrixGenerator<Type>::SetTask(const MGTask<Type> inTask)
 
 	m_Task = inTask;
 	m_HasTask = true;
-
-	GenerateInternal();
 }
 
 template<typename Type>
-void CMatrixGenerator<Type>::GenerateInternal()
+void CMatrixGenerator<Type>::GenerateInternal(const MGTask<Type> inTask)
 {
+	SetTask(inTask);
 	if (m_HasTask == false)
 		throw MGException("There is no task");
 
@@ -86,7 +85,7 @@ void CMatrixGenerator<Type>::CreateChains()
 	size_t nodeIdx = 0;
 	for (size_t chainIdx = 0; chainIdx < m_Task.ChainNodesNumber.size(); chainIdx++)
 	{
-		Chain Current;
+		Chain<Type> Current;
 		Current.NodesNumber = m_Task.ChainNodesNumber[chainIdx];
 		Type Element;
 		BaseTypes::SetValue(Element, 0, 0);
@@ -201,12 +200,12 @@ void CMatrixGenerator<Type>::CreateRandomLinks()
 		Type AddAdmittance = GetRandomAdmittance();
 		Type AddAddition = GetRandomAddition();
 
-		Link NewLinkIn;
+		Link<Type> NewLinkIn;
 		NewLinkIn.RowNumber = NodesIn[insertIdx];
 		NewLinkIn.ColNumber = NodesTo[insertIdx];
 		NewLinkIn.Value = AddAdmittance;
 
-		Link NewLinkTo;
+		Link<Type> NewLinkTo;
 		NewLinkTo.RowNumber = NodesTo[insertIdx];
 		NewLinkTo.ColNumber = NodesIn[insertIdx];
 		NewLinkTo.Value = AddAdmittance;
@@ -337,7 +336,8 @@ void CMatrixGenerator<Type>::CreateEDS()
 				size_t chainAddIdx = WhereEDS[addIdx] - StartNode;
 				m_Chains[chainIdx].b[chainAddIdx] = Sub(m_Chains[chainIdx].b[chainAddIdx], AddAdmittance);
 //				m_Chains[chainIdx].b[chainAddIdx] -= AddAdmittance;
-				m_Chains[chainIdx].RightVector[chainAddIdx] = Sub(Zero, EDSValue);
+				Type RightVecVal = Mul(EDSValue, AddAdmittance);
+				m_Chains[chainIdx].RightVector[chainAddIdx] = Sub(Zero, RightVecVal);
 //				m_Chains[chainIdx].RightVector[chainAddIdx] = -EDSValue;
 				break;
 			}
@@ -494,7 +494,7 @@ COO_matrix<Type> CMatrixGenerator<Type>::GetCOOMatrix()
 template<typename Type>
 COO_matrix<Type> CMatrixGenerator<Type>::GetCOOTriDiagMatrix(size_t ChainIdx)
 {
-	Chain ChainOut = m_Chains[ChainIdx];
+	Chain<Type> ChainOut = m_Chains[ChainIdx];
 	COO_matrix<Type> Matrix;
 
 	size_t Col = ChainOut.StartNode;
@@ -525,7 +525,7 @@ COO_matrix<Type> CMatrixGenerator<Type>::GetCOOTriDiagMatrix(size_t ChainIdx)
 template<typename Type>
 COO_matrix<Type> CMatrixGenerator<Type>::GetCOOMatrix(size_t ChainIdx)
 {
-	Chain ChainOut = m_Chains[ChainIdx];
+	Chain<Type> ChainOut = m_Chains[ChainIdx];
 	COO_matrix<Type> Matrix;
 
 	Matrix = GetCOOTriDiagMatrix(ChainIdx);
