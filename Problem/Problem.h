@@ -24,7 +24,7 @@ namespace MCSAS
 
 		public:
 			void FormulateProblem(Types::COO_matrix<Type> Matrix, std::vector<Type> RightVector);
-			//void FormulateProblem(Chain<Type> Chains);
+			void FormulateProblem(Chain<Type> Chains);
 		};
 	}
 }

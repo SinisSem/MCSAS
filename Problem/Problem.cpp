@@ -162,9 +162,14 @@ void MCSAS::Problem::CProblem<Type>::FormulateProblem( const Types::COO_matrix<T
 
 		m_Chains.push_back(CurrentChain);
 	}
-
 }
 
+
+template<typename Type>
+void MCSAS::Problem::CProblem<Type>::FormulateProblem( Chain<Type> Chains )
+{
+
+}
 
 
 template class CProblem<float>;
