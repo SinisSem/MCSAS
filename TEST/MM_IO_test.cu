@@ -14,12 +14,12 @@ int main()
 {
 	MCSAS::MatrixGenerator::MGTask<double> Task = MCSAS::MatrixGenerator::GetStandardTask<double>(1);
 	MCSAS::MatrixGenerator::CMatrixGenerator<double> MG;
-	MG.SetTask(Task);
+	MG.GenerateInternal(Task);
 	MCSAS::Types::COO_matrix<double> A = MG.GetCOOMatrix();
 	std::vector<double> B = MG.GetRightVector();
 
-	MCSAS::Types::IO::WriteMMFile(A, "mat1.txt");
-	MCSAS::Types::IO::WriteMMFile(B, "vec1.txt");
+	MCSAS::Types::IO::WriteMMFile(A, "mat0.txt");
+	MCSAS::Types::IO::WriteMMFile(B, "vec0.txt");
 
 //	MCSAS::Types::IO::ReadMMFile(A, "mat0.txt");
 //	MCSAS::Types::IO::ReadMMFile(B, "vec0.txt");

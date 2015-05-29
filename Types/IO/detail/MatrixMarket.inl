@@ -79,7 +79,7 @@ namespace MCSAS
 				if (!output)
 					throw IOException("cannot create/open file");
 
-				output.scientific;
+//				output.scientific;
 				output.precision(10);
 				output << "%%MatrixMarket matrix coordinate " << BaseTypes::detail::GetTypeString(Matr.Vals[0]) << " general\n";
 
@@ -228,7 +228,7 @@ namespace MCSAS
 				if (!output)
 					throw IOException("cannot open file");
 
-				output.scientific;
+//				output.scientific;
 				output.precision(10);
 				output << "%%MatrixMarket matrix array " << BaseTypes::detail::GetTypeString(Vector[0]) << " general\n";
 
