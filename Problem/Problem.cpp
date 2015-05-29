@@ -23,7 +23,7 @@ MCSAS::Problem::CProblemReal<Type>::CProblemReal():
 template<typename Type>
 MCSAS::Problem::CProblemReal<Type>::~CProblemReal()
 {
-	
+	cudaDeviceReset();
 }	
 
 template<typename Type>
